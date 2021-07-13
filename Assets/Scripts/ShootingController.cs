@@ -12,6 +12,7 @@ public class ShootingController : MonoBehaviour
         get { return (_rb == null) ? _rb = GetComponent<Rigidbody>() : _rb; }
     }
 
+
     private void OnEnable()
     {
         InputManager.Instance.onReleased.AddListener(Move);
@@ -25,7 +26,12 @@ public class ShootingController : MonoBehaviour
     private void Move(Vector2 direction, float forceMultiplier)
     {
         Debug.Log("FM" + forceMultiplier);
-        if (_Rb.velocity.magnitude > Vector3.zero.magnitude) return;
-        _Rb.AddForce(new Vector3(direction.x * shootingForce, 200, direction.y * shootingForce) * forceMultiplier);
+        if (Mathf.Abs(_Rb.velocity.magnitude - Vector3.zero.magnitude) > 1) return;
+        _Rb.AddForce(new Vector3(direction.x * shootingForce, 200, direction.y * shootingForce) * forceMultiplier * forceMultiplier);
+    }
+
+    private void Update()
+    {
+        _Rb.mass = InputManager.Instance.forceMultiplier;
     }
 }

@@ -9,9 +9,14 @@ public class InputManager : Singleton<InputManager>
     private Vector2 startPosition;
     private Vector2 finishPosition;
     private Vector2 ShootingVector;
-    private float forceMultiplier;
+    public float forceMultiplier;
 
     public ReleaseEvent onReleased = new ReleaseEvent();
+
+    private void Start()
+    {
+        forceMultiplier = 1;
+    }
 
     private void Update()
     {
@@ -22,7 +27,7 @@ public class InputManager : Singleton<InputManager>
         }
         if (Input.GetMouseButtonDown(0))
         {
-            forceMultiplier = 1;
+            
             startPosition = Vector2.zero;
             finishPosition = Vector2.zero;
             startPosition = Input.mousePosition;
@@ -39,6 +44,7 @@ public class InputManager : Singleton<InputManager>
     {
         ShootingVector = (startPosition - finishPosition).normalized;
         onReleased.Invoke(ShootingVector, forceMultiplier);
+        forceMultiplier = 1;
     }
 }
 
