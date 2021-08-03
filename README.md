@@ -2,7 +2,7 @@
 
 Container Shooter project is a game that you need to deliver your cargo to the truck.
 
-** Analytics & Crashlytics **
+**Analytics & Crashlytics**
 If you just want to use Analytics & Crashlytics, you can see the coding for these in the project. 
 
 ## Requirements
